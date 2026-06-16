@@ -12,8 +12,6 @@ const HARD_EXPIRED_PATTERNS = [
   /applications?\s+(?:(?:have|are|is)\s+)?closed/i,
   /closed on \d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
   /closed on (?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\w*\s+\d{1,2}/i,
-  /diese stelle (ist )?(nicht mehr|bereits) besetzt/i,
-  /offre (expirée|n'est plus disponible)/i,
 ];
 
 const LISTING_PAGE_PATTERNS = [
@@ -45,19 +43,9 @@ const EXPIRED_URL_PATTERNS = [
 
 const APPLY_PATTERNS = [
   /\bapply\b/i,
-  /\bsolicitar\b/i,
-  /\bbewerben\b/i,
-  /\bpostuler\b/i,
   /submit application/i,
   /easy apply/i,
   /start application/i,
-  /ich bewerbe mich/i,
-  // Polish (pracuj.pl, justjoin.it, bulldogjob.pl): "Aplikuj" / "Aplikuj teraz" /
-  // "Wyślij CV" / "Przejdź do panelu aplikowania". Without these, a fully-loaded
-  // Polish posting has no recognized apply control and falls to no_apply_control.
-  /\baplikuj\b/i,
-  /panelu aplikowania/i,
-  /wyślij (cv|aplikacj)/i,
 ];
 
 const MIN_CONTENT_CHARS = 300;

@@ -42,14 +42,10 @@ const CANONICAL_STATUSES = [
 ];
 
 const ALIASES = {
-  'evaluada': 'evaluated', 'condicional': 'evaluated', 'hold': 'evaluated', 'evaluar': 'evaluated', 'verificar': 'evaluated',
-  'aplicado': 'applied', 'enviada': 'applied', 'aplicada': 'applied', 'applied': 'applied', 'sent': 'applied',
-  'respondido': 'responded',
-  'entrevista': 'interview',
-  'oferta': 'offer',
-  'rechazado': 'rejected', 'rechazada': 'rejected',
-  'descartado': 'discarded', 'descartada': 'discarded', 'cerrada': 'discarded', 'cancelada': 'discarded',
-  'no aplicar': 'skip', 'no_aplicar': 'skip', 'monitor': 'skip', 'geo blocker': 'skip',
+  'conditional': 'evaluated', 'hold': 'evaluated',
+  'evaluate': 'evaluated', 'verify': 'evaluated',
+  'applied': 'applied', 'sent': 'applied',
+  'monitor': 'skip', 'geo blocker': 'skip',
 };
 
 let errors = 0;
@@ -75,8 +71,8 @@ const lines = content.split('\n');
 // legacy fixed layout when no recognizable header row is found.
 const LEGACY_COLMAP = { num: 1, date: 2, company: 3, role: 4, score: 5, status: 6, pdf: 7, report: 8, notes: 9 };
 const HEADER_ALIASES = {
-  '#': 'num', 'num': 'num', 'date': 'date', 'company': 'company', 'empresa': 'company',
-  'role': 'role', 'puesto': 'role', 'location': 'location', 'score': 'score',
+  '#': 'num', 'num': 'num', 'date': 'date', 'company': 'company',
+  'role': 'role', 'location': 'location', 'score': 'score',
   'status': 'status', 'pdf': 'pdf', 'report': 'report', 'notes': 'notes',
 };
 function detectColumns(allLines) {

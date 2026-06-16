@@ -8,7 +8,7 @@ Export a tailored, ATS-optimized CV as a `.tex` file and compile it to PDF via `
 2. Read `config/profile.yml` for candidate identity and contact info
 3. Ask the user for the JD if not already in context (text or URL)
 4. Extract 15-20 keywords from the JD
-5. Detect JD language → CV language (EN default)
+5. Generate the CV in English, even when the JD is written in another language
 6. Detect role archetype → adapt framing
 7. Rewrite Professional Summary injecting JD keywords (same rules as `pdf` mode — NEVER invent skills)
 8. Select top 3-4 most relevant projects for the offer

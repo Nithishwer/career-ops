@@ -52,7 +52,7 @@ npm run verify
 
 ## normalize
 
-Maps non-canonical statuses to their canonical equivalents and strips markdown bold and dates from the status column. Aliases like `Enviada` become `Aplicado`, `CERRADA` becomes `Descartado`, etc. DUPLICADO info is moved to the notes column.
+Maps English non-canonical statuses to their canonical equivalents and strips markdown bold and dates from the status column. Aliases like `sent` become `Applied`, `hold` becomes `Evaluated`, and duplicate markers move to the notes column.
 
 ```bash
 npm run normalize             # apply changes
@@ -213,7 +213,7 @@ npm run rollback
 
 ## liveness
 
-Tests whether job posting URLs are still live using headless Chromium. Detects expired patterns (e.g. "job no longer available"), HTTP 404/410, ATS redirect patterns, and apply-button presence. Supports multi-language expired patterns (English, German, French).
+Tests whether job posting URLs are still live using headless Chromium. Detects English expired patterns (e.g. "job no longer available"), HTTP 404/410, ATS redirect patterns, and apply-button presence.
 
 ```bash
 npm run liveness -- https://example.com/job/123

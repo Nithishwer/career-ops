@@ -337,7 +337,7 @@ const CANONICAL_STATES = ['Evaluated', 'Applied', 'Responded', 'Interview', 'Off
 /**
  * Convert raw addition status text into one canonical tracker state.
  *
- * Batch workers and older tracker additions may emit Spanish labels, bold
+ * Batch workers and older tracker additions may emit English aliases, bold
  * Markdown, legacy date suffixes, or repost markers. The merge script normalizes
  * all of those variants here so applications.md keeps the states defined by
  * templates/states.yml.
@@ -353,24 +353,18 @@ function validateStatus(status) {
     if (valid.toLowerCase() === lower) return valid;
   }
 
-  // Aliases
+  // English aliases
   const aliases = {
-    // Spanish → English
-    'evaluada': 'Evaluated', 'condicional': 'Evaluated', 'hold': 'Evaluated', 'evaluar': 'Evaluated', 'verificar': 'Evaluated',
-    'aplicado': 'Applied', 'enviada': 'Applied', 'aplicada': 'Applied', 'applied': 'Applied', 'sent': 'Applied',
-    'respondido': 'Responded',
-    'entrevista': 'Interview',
-    'oferta': 'Offer',
-    'rechazado': 'Rejected', 'rechazada': 'Rejected',
-    'descartado': 'Discarded', 'descartada': 'Discarded', 'cerrada': 'Discarded', 'cancelada': 'Discarded',
-    'no aplicar': 'SKIP', 'no_aplicar': 'SKIP', 'skip': 'SKIP', 'monitor': 'SKIP',
+    'conditional': 'Evaluated', 'hold': 'Evaluated', 'evaluate': 'Evaluated', 'verify': 'Evaluated',
+    'applied': 'Applied', 'sent': 'Applied',
+    'skip': 'SKIP', 'monitor': 'SKIP',
     'geo blocker': 'SKIP',
   };
 
   if (aliases[lower]) return aliases[lower];
 
-  // DUPLICADO/Repost → Discarded
-  if (/^(duplicado|dup|repost)/i.test(lower)) return 'Discarded';
+  // Duplicate/repost markers -> Discarded
+  if (/^(duplicate|dup|repost)/i.test(lower)) return 'Discarded';
 
   console.warn(`⚠️  Non-canonical status "${status}" → defaulting to "Evaluated"`);
   return 'Evaluated';
@@ -431,8 +425,8 @@ const LEGACY_COLMAP = { num: 1, date: 2, company: 3, role: 4, score: 5, status: 
 let COLMAP = LEGACY_COLMAP;
 
 const HEADER_ALIASES = {
-  '#': 'num', 'num': 'num', 'date': 'date', 'company': 'company', 'empresa': 'company',
-  'role': 'role', 'puesto': 'role', 'location': 'location', 'score': 'score',
+  '#': 'num', 'num': 'num', 'date': 'date', 'company': 'company',
+  'role': 'role', 'location': 'location', 'score': 'score',
   'status': 'status', 'pdf': 'pdf', 'report': 'report', 'notes': 'notes',
 };
 
@@ -546,8 +540,8 @@ function parseTsvContent(content, filename) {
     const col5 = parts[5].trim();
     const col4LooksLikeScore = /^\d+\.?\d*\/5$/.test(col4) || col4 === 'N/A' || col4 === 'DUP';
     const col5LooksLikeScore = /^\d+\.?\d*\/5$/.test(col5) || col5 === 'N/A' || col5 === 'DUP';
-    const col4LooksLikeStatus = /^(evaluated|applied|responded|interview|offer|rejected|discarded|skip|evaluada|aplicado|respondido|entrevista|oferta|rechazado|descartado|no aplicar|cerrada|duplicado|repost|condicional|hold|monitor)/i.test(col4);
-    const col5LooksLikeStatus = /^(evaluated|applied|responded|interview|offer|rejected|discarded|skip|evaluada|aplicado|respondido|entrevista|oferta|rechazado|descartado|no aplicar|cerrada|duplicado|repost|condicional|hold|monitor)/i.test(col5);
+    const col4LooksLikeStatus = /^(evaluated|applied|responded|interview|offer|rejected|discarded|skip|duplicate|repost|conditional|hold|monitor)/i.test(col4);
+    const col5LooksLikeStatus = /^(evaluated|applied|responded|interview|offer|rejected|discarded|skip|duplicate|repost|conditional|hold|monitor)/i.test(col5);
 
     let statusCol, scoreCol;
     if (col4LooksLikeStatus && !col4LooksLikeScore) {

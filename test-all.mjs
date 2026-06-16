@@ -223,18 +223,6 @@ try {
     fail(`HTTP 403 misclassified as ${blocked403.result} (${blocked403.code})`);
   }
 
-  const activePolishPosting = classifyLiveness({
-    status: 200,
-    finalUrl: 'https://www.pracuj.pl/praca/administrator-sap-utilities-warszawa,oferta,1004870954',
-    bodyText: 'Administrator SAP Utilities. Connectis_. Siedziba firmy: Chmielna 71, Warszawa. '.repeat(6),
-    applyControls: ['Aplikuj Aplikuj na ogłoszenie'],
-  });
-  if (activePolishPosting.result === 'active') {
-    pass('Polish "Aplikuj" apply control marks a loaded posting active');
-  } else {
-    fail(`Polish apply control not recognized: ${activePolishPosting.result} (${activePolishPosting.code})`);
-  }
-
   // Headed-fallback-on-challenge path (liveness-browser.mjs). Fake Playwright
   // pages script the goto/evaluate calls so we can exercise the wrapper without
   // launching a browser. checkUrlLiveness reads body text first, apply controls
@@ -475,9 +463,8 @@ const leakPatterns = [
 
 const scanExtensions = ['md', 'yml', 'html', 'mjs', 'sh', 'go', 'json'];
 const allowedFiles = [
-  // English README + localized translations (all legitimately credit Santiago)
-  'README.md', 'README.es.md', 'README.fr.md', 'README.ja.md', 'README.ko-KR.md',
-  'README.pt-BR.md', 'README.ru.md', 'README.cn.md', 'README.zh-TW.md',
+  // English README legitimately credits Santiago
+  'README.md',
   // Standard project files
   'LICENSE', 'CITATION.cff', 'CONTRIBUTING.md', 'CHANGELOG.md', 'TRADEMARK.md',
   'package.json', '.github/FUNDING.yml', 'CLAUDE.md', 'AGENTS.md', 'go.mod', 'test-all.mjs',

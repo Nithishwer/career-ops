@@ -241,7 +241,7 @@ IMPORTANT OPERATING RULES FOR THIS CLI SESSION
    - For Block D (Comp research): provide salary estimates based on your training data, clearly noted as estimates.
    - For Block G (Legitimacy): analyze the JD text only; skip URL/page freshness checks.
    - Post-evaluation file saving is handled by the script, not by you.
-2. Generate Blocks A through G in full, in English, unless the JD is in another language.
+2. Generate Blocks A through G in full, in English, even when the JD is written in another language.
 3. At the very end, output a machine-readable summary block in this exact format:
 
 ---SCORE_SUMMARY---

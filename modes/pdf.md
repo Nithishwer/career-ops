@@ -5,7 +5,7 @@
 1. Read `cv.md` as the source of truth
 2. Ask the user for the JD if it is not in context (text or URL)
 3. Extract 15-20 keywords from the JD
-4. Detect JD language → CV language (EN default)
+4. Generate the CV in English, even when the JD is written in another language
 5. Detect company location → paper format:
    - US/Canada → `letter`
    - Rest of the world → `a4`
@@ -67,15 +67,15 @@ Use the template in `cv-template.html`. Replace the `{{...}}` placeholders with 
 
 | Placeholder | Content |
 |-------------|-----------|
-| `{{LANG}}` | `en` or `es` |
+| `{{LANG}}` | `en` |
 | `{{PAGE_WIDTH}}` | `8.5in` (letter) or `210mm` (A4) |
 | `{{NAME}}` | (from profile.yml) |
 | `{{PHONE}}` | (from profile.yml — include with its separator only when `profile.yml` has a non-empty `phone` value; omit both `<span>` and `<span class="separator">` otherwise) |
 | `{{EMAIL}}` | (from profile.yml) |
 | `{{LINKEDIN_URL}}` | [from profile.yml] |
 | `{{LINKEDIN_DISPLAY}}` | [from profile.yml] |
-| `{{PORTFOLIO_URL}}` | [from profile.yml] (or /es depending on language) |
-| `{{PORTFOLIO_DISPLAY}}` | [from profile.yml] (or /es depending on language) |
+| `{{PORTFOLIO_URL}}` | [from profile.yml] |
+| `{{PORTFOLIO_DISPLAY}}` | [from profile.yml] |
 | `{{LOCATION}}` | [from profile.yml] |
 | `{{SECTION_SUMMARY}}` | Professional Summary |
 | `{{SUMMARY_TEXT}}` | Personalized summary with keywords |

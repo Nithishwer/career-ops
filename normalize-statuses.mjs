@@ -2,8 +2,7 @@
 /**
  * normalize-statuses.mjs — Clean non-canonical states in applications.md
  *
- * Maps all non-canonical statuses to canonical ones per states.yml:
- *   Evaluada, Aplicado, Respondido, Entrevista, Oferta, Rechazado, Descartado, NO APLICAR
+ * Maps English non-canonical statuses to canonical ones per states.yml.
  *
  * Also strips markdown bold (**) and dates from the status field,
  * moving DUPLICADO info to the notes column.
@@ -31,26 +30,13 @@ function normalizeStatus(raw) {
   let s = raw.replace(/\*\*/g, '').trim();
   const lower = s.toLowerCase();
 
-  // DUPLICADO variants → Discarded
-  if (/^duplicado/i.test(s) || /^dup\b/i.test(s)) {
+  // Duplicate markers -> Discarded
+  if (/^duplicate/i.test(s) || /^dup\b/i.test(s)) {
     return { status: 'Discarded', moveToNotes: raw.trim() };
   }
 
-  // CERRADA / Cancelada / Descartada → Discarded
-  if (/^cerrada$/i.test(s)) return { status: 'Discarded' };
-  if (/^cancelada/i.test(s)) return { status: 'Discarded' };
-  if (/^descartada$/i.test(s)) return { status: 'Discarded' };
-  if (/^descartado$/i.test(s)) return { status: 'Discarded' };
-
-  // Rechazada / Rechazado → Rejected
-  if (/^rechazada?$/i.test(s)) return { status: 'Rejected' };
-  if (/^rechazado\s+\d{4}/i.test(s)) return { status: 'Rejected' };
-
-  // Aplicado with date → Applied (strip date)
-  if (/^aplicado\s+\d{4}/i.test(s)) return { status: 'Applied' };
-
-  // CONDICIONAL / HOLD / EVALUAR / Verificar → Evaluated
-  if (/^(condicional|hold|evaluar|verificar)$/i.test(s)) return { status: 'Evaluated' };
+  // English aliases -> Evaluated
+  if (/^(conditional|hold|evaluate|verify)$/i.test(s)) return { status: 'Evaluated' };
 
   // MONITOR → SKIP
   if (/^monitor$/i.test(s)) return { status: 'SKIP' };
@@ -73,14 +59,9 @@ function normalizeStatus(raw) {
     if (lower === c.toLowerCase()) return { status: c };
   }
 
-  // Spanish aliases → English canonicals
-  if (['evaluada'].includes(lower)) return { status: 'Evaluated' };
-  if (['aplicado', 'enviada', 'aplicada', 'applied', 'sent'].includes(lower)) return { status: 'Applied' };
-  if (['respondido'].includes(lower)) return { status: 'Responded' };
-  if (['entrevista'].includes(lower)) return { status: 'Interview' };
-  if (['oferta'].includes(lower)) return { status: 'Offer' };
-  if (['cerrada', 'descartada'].includes(lower)) return { status: 'Discarded' };
-  if (['no aplicar', 'no_aplicar', 'skip'].includes(lower)) return { status: 'SKIP' };
+  // English aliases -> English canonicals
+  if (['applied', 'sent'].includes(lower)) return { status: 'Applied' };
+  if (['skip'].includes(lower)) return { status: 'SKIP' };
 
   // Unknown — flag it
   return { status: null, unknown: true };
@@ -102,7 +83,7 @@ for (let i = 0; i < lines.length; i++) {
   if (!line.startsWith('|')) continue;
 
   const parts = line.split('|').map(s => s.trim());
-  // Format: ['', '#', 'fecha', 'empresa', 'rol', 'score', 'STATUS', 'pdf', 'report', 'notas', '']
+  // Format: ['', '#', 'date', 'company', 'role', 'score', 'STATUS', 'pdf', 'report', 'notes', '']
   if (parts.length < 9) continue;
   if (parts[1] === '#' || parts[1] === '---' || parts[1] === '') continue;
 

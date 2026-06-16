@@ -28,7 +28,6 @@ Read `config/profile.yml` for:
 - `candidate.credentials` (derive from cv.md Education + Certifications if not in profile.yml)
 - `cover_letter.notice_period_days` (default: omit if key absent)
 - `cover_letter.primary_domain` (default: infer from cv.md if absent)
-- `cover_letter.language_learning` (default: empty list if absent)
 
 Read `cv.md` for:
 - Professional summary (profile introduction source)
@@ -141,8 +140,7 @@ The JD asks for an immediate start. Your profile shows a {notice_period_days}-da
 
 [Gap: language requirement]
 The JD requires {language} at {level}. Where are you with {language}?
-→ Tell me your actual level and I'll reflect it accurately. Check your profile.yml
-  language_learning section for what's already recorded.
+→ Tell me your actual level and I'll reflect it accurately in English.
 
 [Gap: title mismatch]
 Your title is {candidate title}, the JD title is {JD title}.
@@ -239,9 +237,6 @@ Specific to this company's actual situation. Not generic.
 
 [Closing — 1-2 sentences]
 Availability + any gap acknowledgments the user chose to include (Step 5).
-
-[Language closing — if applicable]
-Only if user confirmed inclusion in Step 5. Written in that language. Italic in PDF.
 ```
 
 End the draft with: "How does this read? Once you approve I'll generate the PDF."
@@ -294,8 +289,7 @@ Assemble the JSON payload:
       {"lead": "...", "impact": "..."}
     ],
     "problems_section": "{approved problems paragraph}",
-    "closing": "{approved closing}",
-    "language_closing": "{approved language sentence or null}"
+    "closing": "{approved closing}"
   },
   "output_path": "output/{company-slug}-{role-slug}-cover.pdf"
 }

@@ -118,9 +118,6 @@ export function buildHtml(payload) {
   // preserving the original behavior for payloads that don't set it.
   const greetingBlock = letter.greeting ? `<p class="greeting">${escapeHtml(letter.greeting)}</p>` : "";
   const closingBlock = letter.closing ? `<p>${escapeHtml(letter.closing)}</p>` : "";
-  const languageClosingBlock = letter.language_closing
-    ? `<p class="language-closing">${escapeHtml(letter.language_closing)}</p>`
-    : "";
   const problemsBlock = letter.problems_section ? `<p>${escapeHtml(letter.problems_section)}</p>` : "";
 
   const replacements = {
@@ -135,7 +132,6 @@ export function buildHtml(payload) {
     "{{ACHIEVEMENTS_BLOCK}}": buildAchievementsBlock(letter.achievements),
     "{{PROBLEMS_BLOCK}}": problemsBlock,
     "{{CLOSING_BLOCK}}": closingBlock,
-    "{{LANGUAGE_CLOSING_BLOCK}}": languageClosingBlock,
     "{{FOOTNOTES_BLOCK}}": buildFootnotesBlock(letter.footnotes),
   };
 

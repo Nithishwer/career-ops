@@ -55,7 +55,7 @@
 
 | # | Section | Current | Proposed Change | Why |
 |---|---------|---------|-----------------|-----|
-| 1 | Summary | "Full-stack AI engineer" | "AI platform engineer focused on LLM infrastructure and observability" | Match JD language |
+| 1 | Summary | "Full-stack AI engineer" | "AI platform engineer focused on LLM infrastructure and observability" | Match JD terminology in English |
 | 2 | TechFin bullets | Generic ML platform | Add "LLM serving" context | JD specifically mentions LLMs |
 | 3 | Projects | Both listed equally | Lead with LLM Eval Toolkit | Direct LLM experience proof |
 

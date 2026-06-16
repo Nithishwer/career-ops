@@ -98,20 +98,6 @@ cover_letter:
   # Plain English, e.g. "digital media", "fintech", "healthcare IT".
   primary_domain: "your current domain"
 
-  # Languages you are actively learning. Each entry MAY produce a closing
-  # sentence in that language IF the JD location matches one of the listed
-  # countries AND the user confirms inclusion during the cover letter flow.
-  # Remove the block entirely if not applicable.
-  language_learning:
-    - language: Spanish
-      current_level: B1
-      target_level: B2
-      target_date: "end of 2026"
-      # The sentence to include, written in that language. Keep it one line.
-      sentence: "Estoy aprendiendo español y espero alcanzar el nivel B2 a finales de 2026."
-      # Only trigger this entry when the JD location is in one of these countries.
-      countries: [Spain, Mexico, Argentina, Colombia, Chile]
-
 # ── Auto-PDF threshold ──────────────────────────────────────────────────────
 #
 # Auto-PDF threshold during evaluation (used by `/career-ops pipeline` and

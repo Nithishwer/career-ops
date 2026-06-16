@@ -38,9 +38,8 @@
    - **Sentence 3 (CTA)**: "Looking forward to our conversation on [date]"
    - **Note**: Light tone, not desperate. The goal is to show that you prepared.
 
-5. **Versions**:
-   - EN (default)
-   - ES (if Spanish company)
+5. **Version**:
+   - EN only
 
 6. **Alternative targets** with justification for why they are good second choices
 
